@@ -15,7 +15,7 @@ Input: nums = [0]
 Output: [0]"""
 
                                             #CODE HERE:-
-
+#Method 01:-
 class Solution:
     def sortArrayByParity(self, nums: list[int]) -> list[int]:
         odd=[]
@@ -27,3 +27,15 @@ class Solution:
                 odd.append(nums[i])
         even.extend(odd)
         return even
+    
+#Method 02:-                            To run, Uncomment this code:-
+# def sortArrayByParity02():
+#     nums = list(map(int,input("Enter the elements of the list: ").split()))
+#     start = 0
+#     for i in range(len(nums)):
+#         if nums[i]%2 == 0:
+#             nums[start],nums[i] = nums[i],nums[start]
+#             start+=1
+#     return nums
+
+# print(sortArrayByParity02())
