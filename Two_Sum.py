@@ -31,4 +31,4 @@ class Solution:
             if rem_no in dict1:
                 return dict1[rem_no],i
             else:
-                dict1[nums[i]] = i
+                dict1[nums[i]] = i  
