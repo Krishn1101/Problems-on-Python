@@ -23,7 +23,6 @@ class Node:
 
 class Solution:
     def arrayToList(self, arr):
-        b = False
         ans = Node(arr[0])
         head = ans
         for i in range(1,len(arr)):
