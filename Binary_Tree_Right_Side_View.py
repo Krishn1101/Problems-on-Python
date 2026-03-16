@@ -1,0 +1,101 @@
+"""Given the root of a binary tree, imagine yourself standing on the right side of it, return the values of the nodes you can see ordered from top to bottom.
+
+ 
+
+Example 1:
+
+Input: root = [1,2,3,null,5,null,4]
+
+Output: [1,3,4]
+
+Explanation:
+
+
+
+Example 2:
+
+Input: root = [1,2,3,4,null,null,null,5]
+
+Output: [1,3,4,5]
+
+Explanation:
+
+
+
+Example 3:
+
+Input: root = [1,null,3]
+
+Output: [1,3]
+
+Example 4:
+
+Input: root = []
+
+Output: []"""
+
+                                                            #CODE HERE:-
+
+# Definition for a binary tree node.
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+class Queue:
+    def __init__(self):
+        self.q = []
+        self.front = -1
+
+    def push(self,x):
+        if self.front == -1:
+            self.front += 1
+        self.q.append(x)
+
+    def pop(self):
+        if len(self.q)==0:
+            return -1
+        x = self.q[self.front]
+        self.front+=1
+        if self.front == len(self.q):
+            self.front = -1
+            self.q = []
+        return x
+    
+    def getFront(self):
+        if len(self.q)==0:
+            return -1
+        
+        return self.q[self.front]
+    
+    def size(self):
+        if self.front == -1:
+            return 0
+        
+        return len(self.q) - self.front
+
+class Solution:
+    def rightSideView(self,root):
+        ans = []
+        if root == None:
+            return ans
+        queue = Queue()
+
+        queue.push(root)
+        ans.append(root.val)
+
+        while queue.size()>0:
+            level = []
+            l = queue.size()
+            for i in range(l):
+                front = queue.pop()
+                if front.left!=None:
+                    queue.push(front.left)
+                    level.append(front.left.val)
+                if front.right!=None:
+                    queue.push(front.right)
+                    level.append(front.right.val)
+            if len(level)>0:
+                ans.append(level[-1])
+        return ans
